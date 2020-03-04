@@ -40,9 +40,9 @@ namespace MVCLaboratorio.Controllers
             List<SqlParameter> Parametros = new List<SqlParameter>();
             Parametros.Add(new SqlParameter("@idVideo", idVideo));
             Parametros.Add(new SqlParameter("@titulo", titulo));
-            Parametros.Add(new SqlParameter("@repro", repro));
+            Parametros.Add(new SqlParameter("@reproducciones", repro));
             Parametros.Add(new SqlParameter("@url", url));
-            BaseHelper.ejecutarSentencia("sp_agregar_video", CommandType.StoredProcedure, parametros);
+            BaseHelper.ejecutarSentencia("sp_agregar_video", CommandType.StoredProcedure, Parametros);
 
             return RedirectToAction("Index", "Home");
 
@@ -61,7 +61,7 @@ namespace MVCLaboratorio.Controllers
             Parametros.Add(new SqlParameter("@titulo", titulo));
             Parametros.Add(new SqlParameter("@repro", repro));
             Parametros.Add(new SqlParameter("@url", url));
-            BaseHelper.ejecutarSentencia("sp_video_actualizar", CommandType.StoredProcedure, parametros);
+            BaseHelper.ejecutarSentencia("sp_video_actualizar", CommandType.StoredProcedure, Parametros);
 
             return RedirectToAction("Index", "Home");
 
@@ -72,13 +72,13 @@ namespace MVCLaboratorio.Controllers
             List<SqlParameter> Parametros = new List<SqlParameter>();
             Parametros.Add(new SqlParameter("@idVideo", idVideo));
 
-            BaseHelper.ejecutarSentencia("sp_video_eliminar", CommandType.StoredProcedure, parametros);
+            BaseHelper.ejecutarSentencia("sp_video_eliminar", CommandType.StoredProcedure, Parametros);
 
             return RedirectToAction("Index", "Home");
         }
 
 
-        public List<SqlParameter> parametros { get; set; }
+
     }
 }
 
