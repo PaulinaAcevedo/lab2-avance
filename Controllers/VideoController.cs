@@ -16,7 +16,9 @@ namespace MVCLaboratorio.Controllers
 
         public ActionResult Index()
         {
+            ViewData["datavideo"] = BaseHelper.ejecutarConsulta("select * from video", CommandType.Text);
             return View();
+            
         }
         public ActionResult Create()
         {
@@ -30,6 +32,10 @@ namespace MVCLaboratorio.Controllers
         {
             return View();
         }
+        public ActionResult Search()
+        {
+            return View();
+        }
         //POST Procesa los datos ingresados al formulario
         [HttpPost]
         public ActionResult Create(int idVideo,
@@ -40,7 +46,7 @@ namespace MVCLaboratorio.Controllers
             List<SqlParameter> Parametros = new List<SqlParameter>();
             Parametros.Add(new SqlParameter("@idVideo", idVideo));
             Parametros.Add(new SqlParameter("@titulo", titulo));
-            Parametros.Add(new SqlParameter("@reproducciones", repro));
+            Parametros.Add(new SqlParameter("@repro", repro));
             Parametros.Add(new SqlParameter("@url", url));
             BaseHelper.ejecutarSentencia("sp_agregar_video", CommandType.StoredProcedure, Parametros);
 
@@ -59,7 +65,7 @@ namespace MVCLaboratorio.Controllers
             List<SqlParameter> Parametros = new List<SqlParameter>();
             Parametros.Add(new SqlParameter("@idVideo", idVideo));
             Parametros.Add(new SqlParameter("@titulo", titulo));
-            Parametros.Add(new SqlParameter("@reproducciones", repro));
+            Parametros.Add(new SqlParameter("@repro", repro));
             Parametros.Add(new SqlParameter("@url", url));
             BaseHelper.ejecutarSentencia("sp_video_actualizar", CommandType.StoredProcedure, Parametros);
 
@@ -76,7 +82,14 @@ namespace MVCLaboratorio.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
+        [HttpPost]
+        public ActionResult Search(int idVideo)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@idVideo", idVideo));
+            ViewData["datavideo"] =  BaseHelper.ejecutarConsulta("sp_video_buscar", CommandType.StoredProcedure, parametros);
+            return View("Resultado");
+        }
 
 
     }

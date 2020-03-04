@@ -11,13 +11,14 @@
     <form id="form1" runat="server">
     <h1>opciones
     </h1>
-    <a href="/Video/Index/">ver lista de video</a>
+    <a href="/Video/Index/">Ver lista de video</a>
 
         
     <br />
-    <a href="/Video/Create/">create video</a>
-   <a href="/Video/Edit/">edit</a>
-   <a href="/Video/Delete/">delete</a>
+    <a href="/Video/Create/">Create video</a>
+   <a href="/Video/Edit/">Edit video</a>
+   <a href="/Video/Delete/">Delete video</a>
+   <a href="/Video/Search">Busqueda Video</a>
     </form>
 
 </body>
