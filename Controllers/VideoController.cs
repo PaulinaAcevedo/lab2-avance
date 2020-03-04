@@ -51,7 +51,7 @@ namespace MVCLaboratorio.Controllers
 
 
         [HttpPost]
-        public ActionResult Edite(int idVideo,
+        public ActionResult Edit(int idVideo,
             string titulo,
             int repro,
             string url)
@@ -59,7 +59,7 @@ namespace MVCLaboratorio.Controllers
             List<SqlParameter> Parametros = new List<SqlParameter>();
             Parametros.Add(new SqlParameter("@idVideo", idVideo));
             Parametros.Add(new SqlParameter("@titulo", titulo));
-            Parametros.Add(new SqlParameter("@repro", repro));
+            Parametros.Add(new SqlParameter("@reproducciones", repro));
             Parametros.Add(new SqlParameter("@url", url));
             BaseHelper.ejecutarSentencia("sp_video_actualizar", CommandType.StoredProcedure, Parametros);
 
